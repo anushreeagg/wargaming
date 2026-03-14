@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+:root {
+  --parchment: #f4ede0;
+  --ink: #1a1209;
+  --ink-faded: #3d2e1a;
+  --gold: #b8860b;
+  --gold-light: #d4a843;
+  --seal-red: #8b1a1a;
+  --lamp-amber: #f59e0b;
+  --night-blue: #0f172a;
+  --mansion-stone: #6b7280;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: var(--night-blue);
+  color: var(--parchment);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+.typewriter-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: var(--gold);
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+.parchment {
+  background: var(--parchment);
+  color: var(--ink);
+  position: relative;
+}
+
+.vignette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);
+  pointer-events: none;
+}
+
+@keyframes lamp-glow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+.lamp-glow { animation: lamp-glow 3s ease-in-out infinite; }
+
+@keyframes slide-up {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.slide-up { animation: slide-up 0.4s ease-out; }
+
+@keyframes speaking-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px var(--gold); }
+  50% { box-shadow: 0 0 0 4px var(--gold-light), 0 0 20px rgba(212,168,67,0.3); }
+}
+.speaking { animation: speaking-pulse 2s ease-in-out infinite; }
+
+@keyframes seal-stamp {
+  0% { transform: scale(2) rotate(-20deg); opacity: 0; }
+  60% { transform: scale(0.95) rotate(2deg); opacity: 1; }
+  80% { transform: scale(1.05) rotate(-1deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+.seal-stamp { animation: seal-stamp 0.6s cubic-bezier(0.175,0.885,0.32,1.275) forwards; }
+
+@keyframes flash-in {
+  from { opacity: 0; letter-spacing: 0.2em; }
+  to { opacity: 1; letter-spacing: 0; }
+}
+.consequence-flash { animation: flash-in 0.8s ease-out; }
+
+@keyframes rain-fall {
+  to { background-position: 0 100px; }
+}
+.rain-overlay {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent, transparent 4px,
+    rgba(180,200,220,0.03) 4px,
+    rgba(180,200,220,0.03) 5px
+  );
+  animation: rain-fall 0.5s linear infinite;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.fade-in { animation: fade-in 0.6s ease-out; }
+
+@keyframes telegram-arrive {
+  0% { transform: translateX(100%) rotate(3deg); opacity: 0; }
+  100% { transform: translateX(0) rotate(0deg); opacity: 1; }
+}
+.telegram-arrive { animation: telegram-arrive 0.5s cubic-bezier(0.22,1,0.36,1); }
