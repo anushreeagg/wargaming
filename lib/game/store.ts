@@ -65,6 +65,10 @@ interface GameStore extends SessionState {
   // Free-form argument (for AI evaluation)
   lastFreeFormArgument: string;
   setFreeFormArgument: (text: string) => void;
+
+  // Role selection
+  selectedRole: string | null;
+  selectRole: (characterId: string) => void;
 }
 
 export const useGameStore = create<GameStore>()(
@@ -80,6 +84,7 @@ export const useGameStore = create<GameStore>()(
     chosenThesis: null,
     visitedScenes: [],
     lastFreeFormArgument: '',
+    selectedRole: null,
 
     goToNode: (nodeId: string) => {
       set(state => {
@@ -262,6 +267,29 @@ export const useGameStore = create<GameStore>()(
       });
     },
 
+    selectRole: (characterId: string) => {
+      // Role-specific starting stat bonuses
+      const ROLE_BONUSES: Record<string, StatEffect> = {
+        greene:    { presidentialConfidence: 1, orderWarRisk: -1 },
+        hay:       { publicJustification: 1, presidentialConfidence: 1 },
+        agoncillo: { filipinoEliteSupport: 2, publicJustification: 1 },
+        aide:      {},
+      };
+      const bonus = ROLE_BONUSES[characterId] ?? {};
+      set(state => {
+        state.selectedRole = characterId;
+        const clamp = (v: number) => Math.max(-2, Math.min(5, v));
+        if (bonus.presidentialConfidence)
+          state.stats.presidentialConfidence = clamp(state.stats.presidentialConfidence + bonus.presidentialConfidence);
+        if (bonus.filipinoEliteSupport)
+          state.stats.filipinoEliteSupport = clamp(state.stats.filipinoEliteSupport + bonus.filipinoEliteSupport);
+        if (bonus.publicJustification)
+          state.stats.publicJustification = clamp(state.stats.publicJustification + bonus.publicJustification);
+        if (bonus.orderWarRisk)
+          state.stats.orderWarRisk = clamp(state.stats.orderWarRisk + (bonus.orderWarRisk ?? 0));
+      });
+    },
+
     reset: () => {
       set(state => {
         state.currentNodeId = 'scene0_open';
@@ -275,6 +303,7 @@ export const useGameStore = create<GameStore>()(
         state.chosenThesis = null;
         state.visitedScenes = [];
         state.lastFreeFormArgument = '';
+        state.selectedRole = null;
       });
     },
   }))

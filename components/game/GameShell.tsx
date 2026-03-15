@@ -12,12 +12,14 @@ import { MemoDraftScreen } from './MemoDraftScreen';
 import { EndingCard } from './EndingCard';
 import { DecisionBoard } from './DecisionBoard';
 import { soundEngine } from '@/lib/audio/soundEngine';
+import { getCharacter } from '@/data/characters';
 
 // Nodes that trigger the Decision Board before proceeding
 const DECISION_BOARD_TRIGGER = 'scene5_tone_choice';
 
 export function GameShell() {
-  const { currentNodeId, stats, phase, ending, setPhase, setMemoThesis, goToNode } = useGameStore();
+  const { currentNodeId, stats, phase, ending, setPhase, setMemoThesis, goToNode, selectedRole } = useGameStore();
+  const roleCharacter = getCharacter(selectedRole ?? 'aide');
   const [showDecisionBoard, setShowDecisionBoard] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const node = getNode(currentNodeId);
@@ -122,6 +124,28 @@ export function GameShell() {
             <div className="mt-12">
               <StatBar stats={stats} />
             </div>
+            {/* Role identity */}
+            {roleCharacter && (
+              <div className="bg-black/30 border border-amber-900/20 rounded p-3 space-y-2">
+                <p className="text-[9px] tracking-[0.25em] uppercase font-sans text-amber-600/50">
+                  Your Role
+                </p>
+                <p className="text-amber-300/80 text-xs font-serif leading-tight">
+                  {roleCharacter.name}
+                </p>
+                <p className="text-amber-600/50 text-[9px] font-sans leading-tight">
+                  {roleCharacter.role}
+                </p>
+                <div className="pt-1 space-y-1">
+                  {roleCharacter.objectives.slice(0, 2).map((obj, i) => (
+                    <div key={i} className="flex items-start gap-1.5">
+                      <span className="text-amber-700/40 text-[8px] mt-0.5 flex-shrink-0">▸</span>
+                      <p className="text-amber-600/40 text-[9px] leading-tight">{obj}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
             <div className="text-center">
               <p className="text-amber-500/40 text-[10px] tracking-[0.25em] uppercase font-sans">
                 15 Oct 1898
