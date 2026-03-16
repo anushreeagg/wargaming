@@ -7,7 +7,7 @@ export const CHARACTERS: Character[] = [
     role: 'White House Aide to Cortelyou',
     voice: 'Analytical, careful, learning in real time',
     portrait: '🖊',
-    photoUrl: undefined,
+    photoUrl: '/images/portrait_aide.jpg',
     color: 'amber',
     privateKnowledge: [
       'You have access to both the government documents folder and the periodicals folder',
@@ -28,7 +28,7 @@ export const CHARACTERS: Character[] = [
     role: 'Annexation Advocate, War Department',
     voice: 'Confident, urgent, soldier-engineer precision. Believes partial solutions are self-deception.',
     portrait: '⚔',
-    photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Francis_Vinton_Greene.jpg/240px-Francis_Vinton_Greene.jpg',
+    photoUrl: '/images/portrait_greene.jpg',
     color: 'red',
     privateKnowledge: [
       'You have seen Manila Harbor firsthand — the strategic value is undeniable',
@@ -49,7 +49,7 @@ export const CHARACTERS: Character[] = [
     role: 'Secretary of State',
     voice: 'Cultivated, wry, historically minded, diplomatic. Likes clarity that can survive contact with Europe.',
     portrait: '🎩',
-    photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/JohnHay.jpg/240px-JohnHay.jpg',
+    photoUrl: '/images/portrait_hay.jpg',
     color: 'blue',
     privateKnowledge: [
       'Paris negotiations are delicate — European powers are watching every American signal',
@@ -70,7 +70,7 @@ export const CHARACTERS: Character[] = [
     role: 'Representative of Filipino Claims',
     voice: 'Polished, legalistic, proud, composed. Wants Filipino claims treated as claims, not sentiment.',
     portrait: '🌺',
-    photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Felipe_Agoncillo.jpg/240px-Felipe_Agoncillo.jpg',
+    photoUrl: '/images/portrait_agoncillo.jpg',
     color: 'emerald',
     privateKnowledge: [
       'You were received only as a private citizen — the insult is noted and will be remembered',
@@ -91,7 +91,7 @@ export const CHARACTERS: Character[] = [
     role: 'Secretary to the President',
     voice: 'Calm, procedural, loyal, observant. Asks clear questions. Notices whether conviction is real.',
     portrait: '📋',
-    photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/George_B._Cortelyou.jpg/240px-George_B._Cortelyou.jpg',
+    photoUrl: '/images/portrait_cortelyou.jpg',
     color: 'slate',
     privateKnowledge: [
       'McKinley has been in a listening mood — which is his most dangerous mood',
@@ -112,7 +112,7 @@ export const CHARACTERS: Character[] = [
     role: 'President of the United States',
     voice: 'Gentle, disciplined, probing, deliberate. Invites more detail than expected, then tests the weak seam.',
     portrait: '🦅',
-    photoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/William_McKinley_by_Courtney_Art_Studio%2C_1896-crop.jpg/240px-William_McKinley_by_Courtney_Art_Studio%2C_1896-crop.jpg',
+    photoUrl: '/images/portrait_mckinley.jpg',
     color: 'zinc',
     privateKnowledge: [
       'You have prayed about this. You believe the islands fell into American hands by Providence.',

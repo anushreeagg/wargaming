@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
+/* ── Bhansali Palette ─────────────────────────────────────────────────────── */
 :root {
   --parchment: #f4ede0;
   --ink: #1a1209;
   --ink-faded: #3d2e1a;
   --gold: #b8860b;
   --gold-light: #d4a843;
+  --gold-dim: #7a5a10;
   --seal-red: #8b1a1a;
-  --lamp-amber: #f59e0b;
-  --night-blue: #0f172a;
-  --mansion-stone: #6b7280;
+  --lamp-amber: #e8930a;
+  --night-blue: #07050a;
+  --deep-amber: #2a1500;
+  --char-black: #090608;
 }
 
 * { box-sizing: border-box; }
@@ -18,40 +21,72 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: var(--night-blue);
+  background: var(--char-black);
   color: var(--parchment);
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: var(--font-cormorant), 'Cormorant Garamond', 'Georgia', serif;
   overflow: hidden;
 }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
-::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+/* Cormorant as the primary font — cinematic, period-accurate */
+.font-serif {
+  font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+}
 
+/* IM Fell for intimate NPC speech bubbles */
+.font-fell {
+  font-family: var(--font-im-fell), 'IM Fell English', Georgia, serif;
+}
+
+/* Font sans overrides — keep Tailwind's sans for UI chrome */
+.font-sans {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ── Scrollbar ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: rgba(0,0,0,0.15); }
+::-webkit-scrollbar-thumb { background: rgba(184,134,11,0.35); border-radius: 2px; }
+
+/* ── Typewriter cursor ───────────────────────────────────────────────────── */
 .typewriter-cursor::after {
   content: '|';
   animation: blink 1s step-end infinite;
   color: var(--gold);
 }
-
 @keyframes blink { 50% { opacity: 0; } }
 
+/* ── Parchment surface ───────────────────────────────────────────────────── */
 .parchment {
   background: var(--parchment);
   color: var(--ink);
   position: relative;
 }
 
+/* ── Cinematic vignette ──────────────────────────────────────────────────── */
 .vignette::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.78) 100%);
   pointer-events: none;
 }
 
+/* ── Film grain overlay (Bhansali signature texture) ───────────────────── */
+.film-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.045;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ── Ambient animations ──────────────────────────────────────────────────── */
 @keyframes lamp-glow {
-  0%, 100% { opacity: 0.8; }
+  0%, 100% { opacity: 0.7; }
   50% { opacity: 1; }
 }
 .lamp-glow { animation: lamp-glow 3s ease-in-out infinite; }
@@ -87,12 +122,12 @@ html, body {
 }
 .rain-overlay {
   background-image: repeating-linear-gradient(
-    90deg,
-    transparent, transparent 4px,
-    rgba(180,200,220,0.03) 4px,
-    rgba(180,200,220,0.03) 5px
+    88deg,
+    transparent, transparent 3px,
+    rgba(160,180,200,0.025) 3px,
+    rgba(160,180,200,0.025) 4px
   );
-  animation: rain-fall 0.5s linear infinite;
+  animation: rain-fall 0.4s linear infinite;
 }
 
 @keyframes fade-in {
@@ -106,3 +141,9 @@ html, body {
   100% { transform: translateX(0) rotate(0deg); opacity: 1; }
 }
 .telegram-arrive { animation: telegram-arrive 0.5s cubic-bezier(0.22,1,0.36,1); }
+
+/* ── Bhansali amber grade — applied to scene backgrounds ─────────────────── */
+.bhansali-grade {
+  /* Teal shadows, amber-gold highlights — the Bajirao color grade */
+  filter: sepia(20%) contrast(1.08) brightness(0.88) saturate(0.9);
+}

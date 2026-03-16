@@ -63,16 +63,17 @@ export function CharacterPortrait({ character, isSpeaking, size = 'md' }: Charac
               sizes={`${px}px`}
               className="object-cover object-top"
               style={{
-                filter: 'sepia(60%) contrast(1.1) brightness(0.9)',
+                // Bhansali portrait look: sepia warmth, slight desaturation, period feel
+                filter: 'sepia(45%) contrast(1.12) brightness(0.88) saturate(0.85)',
               }}
               onError={() => setImgError(true)}
               unoptimized
             />
-            {/* Aged vignette overlay */}
+            {/* Chiaroscuro oval vignette */}
             <div
               className="absolute inset-0"
               style={{
-                background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.45) 100%)',
+                background: 'radial-gradient(ellipse at 50% 40%, transparent 40%, rgba(0,0,0,0.55) 100%)',
               }}
             />
           </div>

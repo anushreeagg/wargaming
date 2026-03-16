@@ -95,17 +95,22 @@ export function ArchipelagoMap() {
 
               <div className="flex gap-4 p-5">
                 {/* Map */}
-                <div className="relative bg-blue-950/50 rounded border border-blue-900/30 flex-1" style={{ height: 300 }}>
-                  {/* Ocean texture */}
-                  <div className="absolute inset-0 opacity-20"
+                <div className="relative rounded border border-amber-800/40 flex-1 overflow-hidden" style={{ height: 300 }}>
+                  {/* Period cartographic map background */}
+                  <div
+                    className="absolute inset-0"
                     style={{
-                      backgroundImage: 'repeating-linear-gradient(45deg, #1e3a5f 0, #1e3a5f 1px, transparent 0, transparent 50%)',
-                      backgroundSize: '8px 8px',
+                      backgroundImage: "url('/images/map_philippines.jpg'), radial-gradient(ellipse at 50% 50%, #1e3a5f 0%, #0d1f35 100%)",
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      filter: 'sepia(30%) contrast(1.05) brightness(0.85)',
                     }}
                   />
+                  {/* Amber overlay for aged parchment feel */}
+                  <div className="absolute inset-0" style={{ background: 'rgba(20,12,4,0.35)' }} />
 
                   {/* Pacific label */}
-                  <p className="absolute top-1/2 left-4 -translate-y-1/2 text-blue-400/20 text-xs tracking-widest uppercase font-sans rotate-90">
+                  <p className="absolute top-1/2 left-4 -translate-y-1/2 text-amber-400/25 text-xs tracking-widest uppercase font-sans rotate-90">
                     Pacific
                   </p>
 

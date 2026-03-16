@@ -2,13 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'upload.wikimedia.org',
-        pathname: '/wikipedia/commons/**',
-      },
-    ],
+    // No remote patterns needed — all portraits are now local files in /public/images/
+    remotePatterns: [],
   },
 };
 
