@@ -22,7 +22,7 @@ export default function Home() {
       <div
         className="absolute inset-0 bhansali-grade"
         style={{
-          backgroundImage: "url('/images/bg_mansion_dawn.jpg'), radial-gradient(ellipse at 50% 80%, #2a1205 0%, #0d0804 50%, #000000 100%)",
+          backgroundImage: "url('/images/bg_mansion_dawn.png'), radial-gradient(ellipse at 50% 80%, #2a1205 0%, #0d0804 50%, #000000 100%)",
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
         }}

@@ -100,7 +100,7 @@ export function ArchipelagoMap() {
                   <div
                     className="absolute inset-0"
                     style={{
-                      backgroundImage: "url('/images/map_philippines.jpg'), radial-gradient(ellipse at 50% 50%, #1e3a5f 0%, #0d1f35 100%)",
+                      backgroundImage: "url('/images/map_philippines.png'), radial-gradient(ellipse at 50% 50%, #1e3a5f 0%, #0d1f35 100%)",
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
                       filter: 'sepia(30%) contrast(1.05) brightness(0.85)',

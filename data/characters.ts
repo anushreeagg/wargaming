@@ -7,7 +7,7 @@ export const CHARACTERS: Character[] = [
     role: 'White House Aide to Cortelyou',
     voice: 'Analytical, careful, learning in real time',
     portrait: '🖊',
-    photoUrl: '/images/portrait_aide.jpg',
+    photoUrl: '/images/portrait_aide.png',
     color: 'amber',
     privateKnowledge: [
       'You have access to both the government documents folder and the periodicals folder',
@@ -28,7 +28,7 @@ export const CHARACTERS: Character[] = [
     role: 'Annexation Advocate, War Department',
     voice: 'Confident, urgent, soldier-engineer precision. Believes partial solutions are self-deception.',
     portrait: '⚔',
-    photoUrl: '/images/portrait_greene.jpg',
+    photoUrl: '/images/portrait_greene.png',
     color: 'red',
     privateKnowledge: [
       'You have seen Manila Harbor firsthand — the strategic value is undeniable',
@@ -49,7 +49,7 @@ export const CHARACTERS: Character[] = [
     role: 'Secretary of State',
     voice: 'Cultivated, wry, historically minded, diplomatic. Likes clarity that can survive contact with Europe.',
     portrait: '🎩',
-    photoUrl: '/images/portrait_hay.jpg',
+    photoUrl: '/images/portrait_hay.png',
     color: 'blue',
     privateKnowledge: [
       'Paris negotiations are delicate — European powers are watching every American signal',
@@ -70,7 +70,7 @@ export const CHARACTERS: Character[] = [
     role: 'Representative of Filipino Claims',
     voice: 'Polished, legalistic, proud, composed. Wants Filipino claims treated as claims, not sentiment.',
     portrait: '🌺',
-    photoUrl: '/images/portrait_agoncillo.jpg',
+    photoUrl: '/images/portrait_agoncillo.png',
     color: 'emerald',
     privateKnowledge: [
       'You were received only as a private citizen — the insult is noted and will be remembered',
@@ -91,7 +91,7 @@ export const CHARACTERS: Character[] = [
     role: 'Secretary to the President',
     voice: 'Calm, procedural, loyal, observant. Asks clear questions. Notices whether conviction is real.',
     portrait: '📋',
-    photoUrl: '/images/portrait_cortelyou.jpg',
+    photoUrl: '/images/portrait_cortelyou.png',
     color: 'slate',
     privateKnowledge: [
       'McKinley has been in a listening mood — which is his most dangerous mood',
@@ -112,7 +112,7 @@ export const CHARACTERS: Character[] = [
     role: 'President of the United States',
     voice: 'Gentle, disciplined, probing, deliberate. Invites more detail than expected, then tests the weak seam.',
     portrait: '🦅',
-    photoUrl: '/images/portrait_mckinley.jpg',
+    photoUrl: '/images/portrait_mckinley.png',
     color: 'zinc',
     privateKnowledge: [
       'You have prayed about this. You believe the islands fell into American hands by Providence.',

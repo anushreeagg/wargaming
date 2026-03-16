@@ -24,14 +24,14 @@ const BG_LABELS: Record<BackgroundKey, string> = {
 // ── Image paths ────────────────────────────────────────────────────────────
 // Drop your Midjourney images into /public/images/ with these exact filenames.
 const BG_IMAGES: Record<BackgroundKey, string> = {
-  mansion_dawn:     '/images/bg_mansion_dawn.jpg',
-  desk_morning:     '/images/bg_desk_morning.jpg',
-  desk_afternoon:   '/images/bg_desk_morning.jpg',   // reuse desk image
-  memo_desk:        '/images/bg_memo_desk.jpg',
-  war_room:         '/images/bg_war_room.jpg',
-  state_dept:       '/images/bg_state_dept.jpg',
-  corridor_evening: '/images/bg_corridor_evening.jpg',
-  library_night:    '/images/bg_library_night.jpg',
+  mansion_dawn:     '/images/bg_mansion_dawn.png',
+  desk_morning:     '/images/bg_desk_morning.png',
+  desk_afternoon:   '/images/bg_desk_morning.png',   // reuse desk image
+  memo_desk:        '/images/bg_memo_desk.png',
+  war_room:         '/images/bg_war_room.png',
+  state_dept:       '/images/bg_state_dept.png',
+  corridor_evening: '/images/bg_corridor_evening.png',
+  library_night:    '/images/bg_library_night.png',
 };
 
 // ── Fallback gradient colors per scene (if image missing) ─────────────────
