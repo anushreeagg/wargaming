@@ -83,10 +83,10 @@ function MessageBubble({ node, isLatest, activeParagraph, onParagraphDone, playe
       >
         <div className="flex items-center gap-3">
           <div className="flex-1 h-px" style={{ background: 'rgba(184,134,11,0.12)' }} />
-          <p className="text-[9px] tracking-[0.3em] uppercase font-sans text-amber-600/40 flex-shrink-0">narration</p>
+          <p className="text-[11px] tracking-[0.3em] uppercase font-sans text-amber-500/60 flex-shrink-0">narration</p>
           <div className="flex-1 h-px" style={{ background: 'rgba(184,134,11,0.12)' }} />
         </div>
-        <div className="mt-2 text-amber-100/55 text-sm leading-relaxed italic text-center font-serif">
+        <div className="mt-2 text-amber-100/80 text-base leading-relaxed italic text-center font-serif">
           {paragraphs.map((para, i) => {
             if (isLatest && i > activeParagraph) return null;
             const isLastPara = i === paragraphs.length - 1;
@@ -119,7 +119,7 @@ function MessageBubble({ node, isLatest, activeParagraph, onParagraphDone, playe
       >
         <div className="max-w-[82%]">
           <div className="flex items-center justify-end gap-2 mb-1">
-            <p className="text-[10px] font-sans font-semibold tracking-wide" style={{ color: accent.name }}>
+            <p className="text-xs font-sans font-semibold tracking-wide" style={{ color: accent.name }}>
               {displayName}
             </p>
           </div>
@@ -127,18 +127,18 @@ function MessageBubble({ node, isLatest, activeParagraph, onParagraphDone, playe
             className="rounded-lg rounded-tr-sm p-3.5"
             style={{ background: accent.bg, border: `1px solid ${accent.border}` }}
           >
-            <div className="text-sm leading-relaxed text-amber-200">
+            <div className="text-base leading-relaxed text-amber-100">
               {paragraphs.map((para, i) => {
                 if (isLatest && i > activeParagraph) return null;
                 const isLastPara = i === paragraphs.length - 1;
                 if (isLatest) {
                   return (
-                    <p key={i} className={i > 0 ? 'mt-2' : ''}>
+                    <p key={i} className={i > 0 ? 'mt-3' : ''}>
                       <TypewriterText text={para} speed={43} onComplete={() => onParagraphDone(isLastPara)} />
                     </p>
                   );
                 }
-                return <p key={i} className={i > 0 ? 'mt-2' : ''}>{para}</p>;
+                return <p key={i} className={i > 0 ? 'mt-3' : ''}>{para}</p>;
               })}
             </div>
           </div>
@@ -168,11 +168,11 @@ function MessageBubble({ node, isLatest, activeParagraph, onParagraphDone, playe
       </div>
       <div className="max-w-[82%]">
         <div className="flex items-baseline gap-2 mb-1">
-          <p className="text-[11px] font-sans font-semibold" style={{ color: accent.name }}>
+          <p className="text-sm font-sans font-semibold" style={{ color: accent.name }}>
             {displayName}
           </p>
           {node.speakerRole && (
-            <p className="text-[9px] font-sans text-amber-700/40 tracking-wider uppercase">
+            <p className="text-[11px] font-sans text-amber-600/60 tracking-wider uppercase">
               {node.speakerRole}
             </p>
           )}
@@ -185,18 +185,18 @@ function MessageBubble({ node, isLatest, activeParagraph, onParagraphDone, playe
             borderLeft: `3px solid ${accent.border}`,
           }}
         >
-          <div className="text-sm leading-relaxed text-amber-50/90">
+          <div className="text-base leading-relaxed text-amber-50/95">
             {paragraphs.map((para, i) => {
               if (isLatest && i > activeParagraph) return null;
               const isLastPara = i === paragraphs.length - 1;
               if (isLatest) {
                 return (
-                  <p key={i} className={i > 0 ? 'mt-2' : ''}>
+                  <p key={i} className={i > 0 ? 'mt-3' : ''}>
                     <TypewriterText text={para} speed={43} onComplete={() => onParagraphDone(isLastPara)} />
                   </p>
                 );
               }
-              return <p key={i} className={i > 0 ? 'mt-2' : ''}>{para}</p>;
+              return <p key={i} className={i > 0 ? 'mt-3' : ''}>{para}</p>;
             })}
           </div>
         </div>
@@ -352,7 +352,7 @@ export function ConversationPanel({ node }: ConversationPanelProps) {
                 {/* Divider */}
                 <div className="flex items-center gap-2 mb-1">
                   <div className="flex-1 h-px bg-amber-900/20" />
-                  <p className="text-[9px] tracking-[0.25em] uppercase font-sans text-amber-700/40">Your Response</p>
+                  <p className="text-xs tracking-[0.25em] uppercase font-sans text-amber-600/60">Your Response</p>
                   <div className="flex-1 h-px bg-amber-900/20" />
                 </div>
 
@@ -371,14 +371,14 @@ export function ConversationPanel({ node }: ConversationPanelProps) {
                         : 'bg-black/25 border-amber-900/20 hover:border-amber-800/40'
                     }`}
                   >
-                    <div className="flex items-start gap-2">
-                      <span className="text-amber-600/70 mt-0.5 font-sans text-xs flex-shrink-0">
+                    <div className="flex items-start gap-3">
+                      <span className="text-amber-500/80 mt-0.5 font-sans text-sm font-bold flex-shrink-0">
                         {String.fromCharCode(65 + i)}.
                       </span>
                       <div>
-                        <p className="text-amber-100 text-sm leading-snug">{option.label}</p>
+                        <p className="text-amber-50 text-base leading-snug">{option.label}</p>
                         {option.subtext && (
-                          <p className="text-amber-500/50 text-xs mt-0.5 font-sans italic">{option.subtext}</p>
+                          <p className="text-amber-400/65 text-sm mt-1 font-sans italic">{option.subtext}</p>
                         )}
                       </div>
                     </div>
@@ -396,7 +396,7 @@ export function ConversationPanel({ node }: ConversationPanelProps) {
             ) : !node.options ? (
               <button
                 onClick={handleContinue}
-                className="w-full text-center py-2 text-amber-600/60 text-xs tracking-widest uppercase font-sans hover:text-amber-400 transition-colors"
+                className="w-full text-center py-3 text-amber-500/75 text-sm tracking-widest uppercase font-sans hover:text-amber-300 transition-colors"
               >
                 Continue ›
               </button>

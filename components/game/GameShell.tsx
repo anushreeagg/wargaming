@@ -21,7 +21,7 @@ export function GameShell() {
   const { currentNodeId, stats, phase, ending, setPhase, setMemoThesis, goToNode, selectedRole } = useGameStore();
   const roleCharacter = getCharacter(selectedRole ?? 'aide');
   const [showDecisionBoard, setShowDecisionBoard] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [soundEnabled, setSoundEnabled] = useState(false);
   const node = getNode(currentNodeId);
 
   // Trigger memo phase
@@ -44,6 +44,9 @@ export function GameShell() {
       setTimeout(() => soundEngine?.playDramaticSting(), 600);
     }
   }, [currentNodeId]);
+
+  // Sound starts disabled
+  useEffect(() => { soundEngine?.setEnabled(false); }, []);
 
   const toggleSound = () => {
     const next = !soundEnabled;
@@ -119,69 +122,60 @@ export function GameShell() {
       <BackgroundScene background={bg} ambience={ambience}>
         <div className="relative w-full h-full flex">
 
-          {/* Left sidebar — stats */}
-          <div className="w-52 flex-shrink-0 p-4 flex flex-col gap-4 z-10">
-            <div className="mt-12">
-              <StatBar stats={stats} />
-            </div>
+          {/* Left sidebar — stats + role */}
+          <div className="w-64 flex-shrink-0 p-5 flex flex-col gap-4 z-10 mt-14">
+            <StatBar stats={stats} />
+
             {/* Role identity */}
             {roleCharacter && (
-              <div className="bg-black/30 border border-amber-900/20 rounded p-3 space-y-2">
-                <p className="text-[9px] tracking-[0.25em] uppercase font-sans text-amber-600/50">
+              <div className="bg-black/55 border border-amber-800/35 rounded-lg p-4 space-y-2">
+                <p className="text-[11px] tracking-[0.25em] uppercase font-sans text-amber-500/70">
                   Your Role
                 </p>
-                <p className="text-amber-300/80 text-xs font-serif leading-tight">
+                <p className="text-amber-200 text-sm font-serif leading-snug font-semibold">
                   {roleCharacter.name}
                 </p>
-                <p className="text-amber-600/50 text-[9px] font-sans leading-tight">
+                <p className="text-amber-400/70 text-xs font-sans leading-snug">
                   {roleCharacter.role}
                 </p>
-                <div className="pt-1 space-y-1">
+                <div className="pt-1 space-y-1.5">
                   {roleCharacter.objectives.slice(0, 2).map((obj, i) => (
-                    <div key={i} className="flex items-start gap-1.5">
-                      <span className="text-amber-700/40 text-[8px] mt-0.5 flex-shrink-0">▸</span>
-                      <p className="text-amber-600/40 text-[9px] leading-tight">{obj}</p>
+                    <div key={i} className="flex items-start gap-2">
+                      <span className="text-amber-600/60 text-xs mt-0.5 flex-shrink-0">▸</span>
+                      <p className="text-amber-300/55 text-xs leading-snug">{obj}</p>
                     </div>
                   ))}
                 </div>
               </div>
             )}
-            <div className="text-center">
-              <p className="text-amber-500/40 text-[10px] tracking-[0.25em] uppercase font-sans">
-                15 Oct 1898
-              </p>
-              <div className="mt-1 flex justify-center gap-1">
-                {[0, 1, 2, 3, 4].map(i => (
-                  <div
-                    key={i}
-                    className="w-1.5 h-1.5 rounded-full"
-                    style={{
-                      backgroundColor: i < Math.floor((node.scene / 7) * 5)
-                        ? '#b8860b'
-                        : 'rgba(184, 134, 11, 0.2)',
-                    }}
-                  />
-                ))}
+          </div>
+
+          {/* Center — dialogue panel */}
+          <div className="flex-1 flex flex-col justify-end pb-6 px-6 z-10 min-w-0">
+            {/* Semi-transparent backdrop for readability */}
+            <div
+              className="max-w-2xl mx-auto w-full rounded-xl overflow-hidden"
+              style={{
+                background: 'rgba(6,4,2,0.72)',
+                border: '1px solid rgba(184,134,11,0.18)',
+                boxShadow: '0 0 60px rgba(0,0,0,0.7)',
+                maxHeight: '82vh',
+              }}
+            >
+              <div className="p-6 h-full" style={{ maxHeight: '82vh', overflowY: 'auto' }}>
+                <ConversationPanel node={node} />
               </div>
-              <p className="text-amber-600/30 text-[9px] font-sans mt-1">Scene {node.scene} / 7</p>
             </div>
           </div>
 
-          {/* Center — dialogue */}
-          <div className="flex-1 flex flex-col justify-end pb-6 px-4 z-10 min-w-0">
-            <div className="max-w-xl mx-auto w-full" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
-              <ConversationPanel node={node} />
-            </div>
-          </div>
-
-          {/* Right sidebar — tools */}
-          <div className="w-52 flex-shrink-0 p-4 flex flex-col gap-3 z-10 mt-12">
+          {/* Right sidebar — tools + scene */}
+          <div className="w-56 flex-shrink-0 p-5 flex flex-col gap-3 z-10 mt-14">
             <PhraseCardDeck />
             <ArchipelagoMap />
             <button
               onClick={toggleSound}
-              className="flex items-center gap-2 px-3 py-2 bg-stone-900/40 border border-stone-700/30 rounded text-xs font-sans tracking-wide transition-all hover:bg-stone-800/60"
-              style={{ color: soundEnabled ? 'rgba(180,160,100,0.7)' : 'rgba(120,100,80,0.4)' }}
+              className="flex items-center gap-2 px-3 py-2.5 bg-black/50 border border-stone-700/40 rounded text-xs font-sans tracking-wide transition-all hover:bg-stone-800/60"
+              style={{ color: soundEnabled ? 'rgba(180,160,100,0.8)' : 'rgba(120,100,80,0.5)' }}
             >
               <span>{soundEnabled ? '♪' : '♪̸'}</span>
               <span>{soundEnabled ? 'Sound On' : 'Sound Off'}</span>
@@ -209,9 +203,9 @@ function SceneIndicator({ scene }: { scene: number }) {
             }}
           />
           <p
-            className="text-[10px] font-sans truncate"
+            className="text-xs font-sans truncate"
             style={{
-              color: i < scene ? 'rgba(184,134,11,0.4)' : i === scene ? 'rgba(212,168,67,0.9)' : 'rgba(184,134,11,0.2)',
+              color: i < scene ? 'rgba(184,134,11,0.5)' : i === scene ? 'rgba(212,168,67,0.95)' : 'rgba(184,134,11,0.25)',
             }}
           >
             {label}
